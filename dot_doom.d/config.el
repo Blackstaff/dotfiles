@@ -80,6 +80,7 @@
 
 (setq projectile-project-search-path '("~/projects/"))
 
+(setq alert-default-style 'libnotify)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
