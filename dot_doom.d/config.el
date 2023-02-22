@@ -82,6 +82,12 @@
 
 (setq alert-default-style 'libnotify)
 
+;; PlantUML config
+(setq plantuml-default-exec-mode 'jar)
+;; Enable plantuml-mode for PlantUML files
+(add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
+
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
