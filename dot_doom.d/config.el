@@ -45,9 +45,9 @@
 ;; Show battery level unless battery is not present or battery information is unknown.
 (after! doom-modeline
   (let ((battery-str (battery)))
-     (unless (or (equal "Battery status not available" battery-str)
-                 (string-match-p (regexp-quote "unknown") battery-str)
-                 (string-match-p (regexp-quote "N/A") battery-str))
+    (unless (or (equal "Battery status not available" battery-str)
+                (string-match-p (regexp-quote "unknown") battery-str)
+                (string-match-p (regexp-quote "N/A") battery-str))
       (display-battery-mode 1))))
 
 (global-subword-mode 1)                           ; Iterate through CamelCase words
@@ -86,6 +86,16 @@
 (setq plantuml-default-exec-mode 'jar)
 ;; Enable plantuml-mode for PlantUML files
 (add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
+
+
+;; Workaround for locating Elixir .formatter.exs
+(defun shou/fix-apheleia-project-dir (orig-fn &rest args)
+  (let ((project (project-current)))
+    (if (not (null project))
+        (let ((default-directory (project-root project))) (apply orig-fn args))
+      (apply orig-fn args))))
+
+(advice-add 'apheleia-format-buffer :around #'shou/fix-apheleia-project-dir)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
