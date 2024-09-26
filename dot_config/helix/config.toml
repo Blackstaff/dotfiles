@@ -1,0 +1,6 @@
+theme = "dracula_at_night"
+
+[editor]
+text-width = 120
+default-line-ending = "lf"
+line-number = "relative"
